@@ -4,6 +4,38 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Content for Layout documents
+ */
+interface LayoutDocumentData {
+	/**
+	 * Aktiv field in *Layout*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: layout.activ
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	activ: prismic.BooleanField;
+}
+
+/**
+ * Layout document from Prismic
+ *
+ * - **API ID**: `layout`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LayoutDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<LayoutDocumentData>,
+	'layout',
+	Lang
+>;
+
 type PageDocumentDataSlicesSlice = RichTextSlice;
 
 /**
@@ -79,7 +111,7 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
-export type AllDocumentTypes = PageDocument;
+export type AllDocumentTypes = LayoutDocument | PageDocument;
 
 /**
  * Primary content in *RichText → Default → Primary*
@@ -131,8 +163,21 @@ declare module '@prismicio/client' {
 		): prismic.Client<AllDocumentTypes>;
 	}
 
+	interface CreateWriteClient {
+		(
+			repositoryNameOrEndpoint: string,
+			options: prismic.WriteClientConfig
+		): prismic.WriteClient<AllDocumentTypes>;
+	}
+
+	interface CreateMigration {
+		(): prismic.Migration<AllDocumentTypes>;
+	}
+
 	namespace Content {
 		export type {
+			LayoutDocument,
+			LayoutDocumentData,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
