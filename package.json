@@ -14,7 +14,7 @@
 		"slicemachine": "start-slicemachine"
 	},
 	"devDependencies": {
-		"@slicemachine/adapter-sveltekit": "^0.3.72",
+		"@slicemachine/adapter-sveltekit": "^0.3.73",
 		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/adapter-netlify": "^5.0.0",
 		"@sveltejs/kit": "^2.5.15",

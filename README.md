@@ -1,5 +1,8 @@
 # Prismic + SvelteKit Minimal Starter
 
+## prismicio-types.d problem
+Um prismicio-types.d neu zu generieren um Typescript Fehlermeldungen zu verhindern: In Slycemachine GUI im ensprechenden Customtype ein dummy Feld hinzufügen und wieder löschen.
+
 Want to quickly get started building your own project with [Prismic][prismic] and [SvelteKit][sveltekit]? This project includes basic configurations and nothing else. The project includes one Rich Text Slice, a homepage, and a dynamic page.
 
 - **Demo**: [Open live demo][live-demo]
