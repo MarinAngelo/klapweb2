@@ -111,7 +111,60 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
-export type AllDocumentTypes = LayoutDocument | PageDocument;
+/**
+ * Content for Einstellungen documents
+ */
+interface SettingsDocumentData {
+	/**
+	 * Webseiten-Titel	 field in *Einstellungen*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.site_title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	site_title: prismic.KeyTextField;
+
+	/**
+	 * Seitenbeschreibung field in *Einstellungen*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.meta_description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Social Media Vorschaubild field in *Einstellungen*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.og_image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	og_image: prismic.ImageField<never>;
+}
+
+/**
+ * Einstellungen document from Prismic
+ *
+ * - **API ID**: `settings`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+	Simplify<SettingsDocumentData>,
+	'settings',
+	Lang
+>;
+
+export type AllDocumentTypes = LayoutDocument | PageDocument | SettingsDocument;
 
 /**
  * Primary content in *RichText → Default → Primary*
@@ -181,6 +234,8 @@ declare module '@prismicio/client' {
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
+			SettingsDocument,
+			SettingsDocumentData,
 			AllDocumentTypes,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,

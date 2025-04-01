@@ -1,0 +1,33 @@
+{
+	"format": "custom",
+	"id": "settings",
+	"label": "Einstellungen",
+	"repeatable": false,
+	"status": true,
+	"json": {
+		"Main": {
+			"site_title": {
+				"type": "Text",
+				"config": {
+					"label": "Webseiten-Titel\t",
+					"placeholder": ""
+				}
+			},
+			"meta_description": {
+				"type": "Text",
+				"config": {
+					"label": "Seitenbeschreibung",
+					"placeholder": ""
+				}
+			},
+			"og_image": {
+				"type": "Image",
+				"config": {
+					"label": "Social Media Vorschaubild",
+					"constraint": {},
+					"thumbnails": []
+				}
+			}
+		}
+	}
+}
